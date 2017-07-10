@@ -1,0 +1,42 @@
+		body {
+			background-color: #EEEEEF;
+			font-family:Tahoma, Geneva, sans-serif;
+		}		
+		.pics {
+			border:3px solid #CCC;
+			border-radius:50%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			z-index: 10;
+			text-align: center;
+			display: none; /* to prevent flash of unstyled content */
+			cursor: pointer;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		} 
+		.grow {
+			cursor: zoom-in;
+			
+		}
+		.ovaltext {
+			position: absolute; 
+			font-size:0.9em;
+			bottom: 0;
+			z-index: 11;
+			color:white;
+			background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+			width:100%;
+			line-height: 1.0;
+		}
+		.supveecount {
+			position: absolute; 
+			top: 3px;
+			right: 3px;
+			z-index: 11;
+			color:white;
+			border:3px solid #CCC;
+			border-radius:50%;			
+		}	
+		.h1 {
+			font-size:2em;
+		}
