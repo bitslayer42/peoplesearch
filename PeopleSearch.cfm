@@ -6,7 +6,7 @@
 <title>Search through phone list</title>
 
 <!---<cfdump var="#form#">  --->
-	<link rel="stylesheet" type="text/css" href="PeopleSearch.css">
+	<link rel="stylesheet" type="text/css" href="./PeopleSearch.css">
 	
 	<script type="text/javascript" src="https://ccp1.msj.org/scripts/jquery/jquery-1.8.2.min.js"></script>
 
@@ -33,19 +33,6 @@
 		});
 	</script>
   
-
-<cffunction name="titleCase" access="public" returntype="string">
-     <cfargument name="str" type="string" required="yes" />
-
-     <cfset var retStr = "" />
-     <cfset var idx = "" />
-
-        <cfloop list="#arguments.str#" delimiters=" -" index="idx">
-          <cfset retStr = listAppend(retStr, ucase(left(idx,1)) & lcase(right(idx,max(1,Len(idx)-1)))," ") /> 
-        </cfloop>
-
-     <cfreturn retStr />
-</cffunction>
 
 <cffunction name="formatPhoneNumber">
    <cfargument name="phoneNumber" required="true" />
@@ -95,7 +82,7 @@
 		<cfprocresult name="theresults">
 	</cfstoredproc>
 	<cfstoredproc procedure="PeopleSearch" datasource="intranet-sql">
-		<cfif IsDefined("form.searchby")><cfprocparam cfsqltype="cf_sql_varchar" value="#form.searchby#">
+		<cfif IsDefined("form.searchby")><cfprocparam cfsqltype="cf_sql_varchar" value="#trim(form.searchby)#">
 			<cfelse><cfprocparam cfsqltype="cf_sql_varchar" null="true"></cfif>
 		<cfif IsDefined("form.id")><cfprocparam cfsqltype="cf_sql_varchar" value="#form.id#">
 			<cfelse><cfprocparam cfsqltype="cf_sql_varchar" null="true"></cfif>
@@ -109,7 +96,7 @@
 	</cfstoredproc>
 <cfelse>
 	<cfstoredproc procedure="PeopleSearch" datasource="intranet-sql">
-		<cfif IsDefined("form.searchby")><cfprocparam cfsqltype="cf_sql_varchar" value="#form.searchby#">
+		<cfif IsDefined("form.searchby")><cfprocparam cfsqltype="cf_sql_varchar" value="#trim(form.searchby)#">
 			<cfelse><cfprocparam cfsqltype="cf_sql_varchar" null="true"></cfif>
 		<cfif IsDefined("form.id")><cfprocparam cfsqltype="cf_sql_varchar" value="#form.id#">
 			<cfelse><cfprocparam cfsqltype="cf_sql_varchar" null="true"></cfif>
@@ -184,8 +171,9 @@
 				</div>
 				
 				<div style="font-size:0.8em;line-height:1.2em;padding:10px;">
-					<cfif #Mobile# NEQ ''><i>Cell:</i> <b>#formatPhoneNumber(Mobile)#</b><br></cfif>
 					<cfif #Extension# NEQ ''><i>Extension:</i> <b>#Extension#</b><br></cfif>
+					<cfif #OfficePhone# NEQ ''><i>Office Phone:</i> <b>#OfficePhone#</b><br></cfif>
+					<cfif #Mobile# NEQ ''><i>Cell:</i> <b>#formatPhoneNumber(Mobile)#</b><br></cfif>
 					<cfif #Pager# NEQ ''><i>Pager:</i> <b>#Pager#</b><br></cfif>
 					<cfif #EMail# NEQ ''><i>EMail:</i> <a href="mailto:#lcase(EMail)#" class="regularlinks">#lcase(EMail)#</a><br></cfif>
 					<cfif #StreetAddress# NEQ ''>
