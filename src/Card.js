@@ -36,7 +36,7 @@ export default class Card extends React.Component {
   
   render() {
     const staff = this.props.staff;
-    const imgName = {backgroundImage:`url('http://missionondemand.msj.org/empphotos/${staff.FileName}')`};
+    const imgName = {backgroundImage:`url('./${staff.FileName}')`};
     return (
       <div className="card">
         <div className={this.state.picClasses.join(' ')} style={imgName} onClick={this.animateMe}>

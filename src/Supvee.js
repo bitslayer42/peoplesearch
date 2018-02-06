@@ -15,7 +15,7 @@ export default class Supvee extends React.Component {
   
   render() {
     const supvee = this.props.supvee;
-    const imgName = {backgroundImage:`url('http://missionondemand.msj.org/empphotos/${supvee.FileName}')`};
+    const imgName = {backgroundImage:`url('http://filepath/empphotos/${supvee.FileName}')`};
     return (
       <a href="supv" onClick={this.onClick}>
         <div className="pics" style={imgName}>

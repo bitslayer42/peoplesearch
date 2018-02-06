@@ -1,10 +1,11 @@
 import React from 'react';
-import axios from 'axios'; //ajax library
-import { LibPath } from './LibPath';
+//import axios from 'axios'; //ajax library
+//import { LibPath } from './LibPath';
 import Card from './Card';
 import Supvee from './Supvee';
 import './css/Result.css';
-  
+import StaffData from './StaffData';
+
 export default class Result extends React.Component { 
 
   constructor(props) {
@@ -31,18 +32,13 @@ export default class Result extends React.Component {
   }
   
   fetchData(params){ 
-    axios.get(LibPath + 'PeopleSearch.cfm', { 
-      params: params
+    let SelStaff = {};
+    SelStaff.staff = StaffData.filter(aStaff=>{
+      return aStaff.Name.includes(params);
     })
-    .then(res => { 
-      //const userData = res.data; 
-        this.setState({
-          selected: res.data
-        },()=>{console.log('result',this.state.selected)});
-    })
-    .catch(err => {
-      console.log(err);
-    }); 
+    this.setState({
+      selected: SelStaff
+    });
   }
   
   onClick(clickType,clickValue) {  //user clicked on clickType: supv, dept, or job
@@ -57,10 +53,7 @@ export default class Result extends React.Component {
           this.state.selected.staff.map((staff,ix) => {
             return (
               <div key={ix} style={{width:"800px",margin:"0 auto"}}>
-                {staff.IsCarePartners==="1"
-                ? <div className="carepar"><Card staff={staff} onClick={this.onClick}/></div>
-                : <div className="mission"><Card staff={staff} onClick={this.onClick} /></div>
-                }
+                <div><Card staff={staff} onClick={this.onClick} /></div>
               </div>
             )
           })

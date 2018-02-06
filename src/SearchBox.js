@@ -1,8 +1,9 @@
 import React from 'react';
-import axios from 'axios'; //ajax library
-import { LibPath } from './LibPath';
+//import axios from 'axios'; //ajax library
+//import { LibPath } from './LibPath';
 import Autosuggest from 'react-autosuggest'; //  https://github.com/moroshko/react-autosuggest
 import './css/SearchBox.css';
+import StaffData from './StaffData';
 
 export default class SearchBox extends React.Component {
   constructor() {
@@ -54,22 +55,12 @@ export default class SearchBox extends React.Component {
     if(inputLength <= 1){
       return []; 
     }else{
-      axios.get(LibPath + 'PeopleSearch.cfm', { 
-        params: {
-          searchby: value,
-          maxrows: 10,
-          cachebuster: Math.random()
-        }
+      let SelStaff = StaffData.filter(aStaff=>{
+        return aStaff.Name.includes(value); //(/value/i).test(aStaff.Name); //  
       })
-      .then(res => { console.log("searchSuggestions: ",res.data);
-        const staffData = res.data.staff; 
-          self.setState({
-            suggestions: staffData
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      }); 
+      self.setState({
+        suggestions: SelStaff
+      });
     }
   }
 
@@ -78,7 +69,7 @@ export default class SearchBox extends React.Component {
   }
 
   renderSuggestion(suggestion){
-    const picstyle = suggestion.FileName?{backgroundImage: "url(http://mod.msj.org/empphotos/" + suggestion.FileName + ")"}:{};
+    const picstyle = suggestion.FileName?{backgroundImage: "url(./" + suggestion.FileName + ")"}:{};
     picstyle.backgroundColor = suggestion.IsCarePartners==="0" ? "#EEEEEF" : "white"; 
     return (
       <div style={picstyle} className="pic">

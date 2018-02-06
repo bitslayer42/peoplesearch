@@ -10,19 +10,6 @@
       flex-direction: column;
       
     }
-    .carepar {
-      background-color:#FFF;
-      background-image: url('../images/cplogo.png');
-			background-position: right center;
-			background-repeat: no-repeat;      
-    }
-    .mission {
-      background-color:#DDD;
-      background-image: url('../images/missionlogo.png');
-			background-position: right center;
-			background-repeat: no-repeat;
-   
-    }
     .supveebox {
       
       width:800px;

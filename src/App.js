@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBox from './SearchBox';
 import Result from './Result';
 import './css/App.css';
-import logo from './images/logo.png';
+//import logo from './images/logo.png';<img src={logo} alt="logo" style={{marginTop:"40px"}}/>
 
 class App extends Component {
  constructor(props) { 
@@ -30,10 +30,10 @@ class App extends Component {
     return (
       <div className="App">
         <span className="return">
-          <a href="/index.cfm">Return to intranet home page.</a>
+          <a href="/">Return to home page.</a>
         </span>
         <div className="header">
-          <img src={logo} alt="logo" style={{marginTop:"40px"}}/>
+          
           <div className="title">People Search</div>
           <SearchBox handleSel={this.handleSel}/>
         </div>
