@@ -31,10 +31,13 @@ export default class Result extends React.Component {
     }
   }
   
-  fetchData(params){ 
+  fetchData(params){ //debugger;
     let SelStaff = {};
     SelStaff.staff = StaffData.filter(aStaff=>{
-      return aStaff.Name.includes(params);
+      let patt = RegExp(params.searchby,'i');
+      return patt.test(aStaff.Name);
+
+      //return aStaff.Name.includes(params);
     })
     this.setState({
       selected: SelStaff

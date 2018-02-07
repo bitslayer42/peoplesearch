@@ -56,7 +56,8 @@ export default class SearchBox extends React.Component {
       return []; 
     }else{
       let SelStaff = StaffData.filter(aStaff=>{
-        return aStaff.Name.includes(value); //(/value/i).test(aStaff.Name); //  
+        let patt = RegExp(value,'i');
+        return patt.test(aStaff.Name);
       })
       self.setState({
         suggestions: SelStaff
